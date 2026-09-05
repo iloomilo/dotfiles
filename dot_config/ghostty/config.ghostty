@@ -1,3 +1,8 @@
-config-file = themes/colors
+theme = colors
 
 window-decoration=false
+window-padding-x = 12
+window-padding-y = 12
+window-padding-balance = true
+background-opacity = 0.90
+
