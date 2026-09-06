@@ -15,3 +15,8 @@ output_path = '~/.config/niri/colors.kdl'
 input_path = '~/.config/matugen/templates/ghostty'
 output_path = '~/.config/ghostty/themes/colors'
 post_hook = 'touch ~/.config/ghostty/config.ghostty'
+
+[templates.neovim]
+input_path = '~/.config/matugen/templates/neovim-colors.lua'
+output_path = '~/.config/nvim/lua/config/colors.lua'
+
