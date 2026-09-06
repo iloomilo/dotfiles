@@ -1,10 +1,13 @@
 return {
-  -- Tokyonight deaktivieren
-  { "folke/tokyonight.nvim", enabled = false },
-
-  -- mini.base16 Theme laden, das die Farben aus colors.lua nimmt
   {
-    "echasnovski/mini.base16",
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = function() end,
+    },
+  },
+  { "folke/tokyonight.nvim", enabled = false },
+  {
+    "nvim-mini/mini.base16",
     lazy = false,
     priority = 1000,
     config = function()
@@ -18,7 +21,6 @@ return {
         use_cterm = true,
       })
 
-      -- Hintergrund transparent schalten für Niri-Blur
       local highlights = {
         "Normal",
         "NormalNC",
@@ -34,8 +36,6 @@ return {
       end
     end,
   },
-
-  -- Lualine (Statusleiste unten) farblich anpassen
   {
     "nvim-lualine/lualine.nvim",
     opts = function(_, opts)
