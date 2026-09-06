@@ -1,5 +1,11 @@
 include "colors.kdl"
 
+overview {
+    workspace-shadow {
+        off
+    }
+}
+
 
 // This config is in the KDL format: https://kdl.dev
 // "/-" comments out the following node.
@@ -240,7 +246,6 @@ layout {
     struts {
         // left 64
         // right 64
-        // top 64
         // bottom 64
     }
 }
@@ -319,6 +324,7 @@ window-rule {
         off
     }
 }
+
 
 
 // Open the Firefox picture-in-picture player as floating by default.
