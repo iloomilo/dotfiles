@@ -11,10 +11,6 @@ output_path = '~/.config/quickshell/theme/Colors.qml'
 input_path = '~/.config/matugen/templates/colors.kdl'
 output_path = '~/.config/niri/colors.kdl'
 
-[templates.ghostty]
-input_path = '~/.config/matugen/templates/ghostty'
-output_path = '~/.config/ghostty/themes/colors'
-post_hook = 'touch ~/.config/ghostty/config.ghostty'
 
 [templates.neovim]
 input_path = '~/.config/matugen/templates/neovim-colors.lua'

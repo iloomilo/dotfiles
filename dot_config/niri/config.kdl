@@ -302,7 +302,7 @@ window-rule {
 }
 
 window-rule {
-    match app-id=r#"^(ghostty|kitty)$"#
+    match app-id=r#"^kitty$"#
 
     draw-border-with-background false
 

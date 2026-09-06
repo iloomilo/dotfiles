@@ -1,6 +1,5 @@
 .config/quickshell/theme/Colors.qml
 .config/niri/colors.kdl
-.config/ghostty/themes/colors
 .config/nvim/lua/config/colors.lua
 .config/kitty/colors.conf
 
