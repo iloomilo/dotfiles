@@ -20,3 +20,9 @@ post_hook = 'touch ~/.config/ghostty/config.ghostty'
 input_path = '~/.config/matugen/templates/neovim-colors.lua'
 output_path = '~/.config/nvim/lua/config/colors.lua'
 
+[templates.kitty]
+input_path = '~/.config/matugen/templates/kitty-colors.conf'
+output_path = '~/.config/kitty/colors.conf'
+post_hook = 'kitty @ set-colors -a ~/.config/kitty/colors.conf 2>/dev/null || true'
+
+
