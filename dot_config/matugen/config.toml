@@ -21,4 +21,13 @@ input_path = '~/.config/matugen/templates/kitty-colors.conf'
 output_path = '~/.config/kitty/colors.conf'
 post_hook = 'kitty @ set-colors -a ~/.config/kitty/colors.conf 2>/dev/null || true'
 
+[templates.fuzzel]
+input_path = '~/.config/matugen/templates/fuzzel-colors.ini'
+output_path = '~/.config/fuzzel/colors.ini'
+
+[templates.btop]
+input_path = '~/.config/matugen/templates/btop.theme'
+output_path = '~/.config/btop/themes/matugen.theme'
+
+
 

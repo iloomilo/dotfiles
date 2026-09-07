@@ -316,6 +316,16 @@ window-rule {
     }
 }
 
+layer-rule {
+    match namespace="^(launcher|fuzzel)$"
+
+    background-effect {
+        blur true
+    }
+}
+
+
+
 // Only the active window gets a drop shadow
 window-rule {
     match is-focused=false
