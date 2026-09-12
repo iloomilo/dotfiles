@@ -29,5 +29,10 @@ output_path = '~/.config/fuzzel/colors.ini'
 input_path = '~/.config/matugen/templates/btop.theme'
 output_path = '~/.config/btop/themes/matugen.theme'
 
+[templates.spicetify]
+input_path = '~/.config/matugen/templates/spicetify-color.ini'
+output_path = '~/.config/spicetify/Themes/Matugen/color.ini'
+post_hook = 'spicetify apply -n 2>/dev/null || true'
+
 
 
