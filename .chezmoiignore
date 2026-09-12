@@ -1,6 +1,7 @@
-.config/quickshell/theme/Colors.qml
+.config/quickshell/**
 .config/niri/colors.kdl
 .config/nvim/lua/config/colors.lua
 .config/kitty/colors.conf
+
 
 
