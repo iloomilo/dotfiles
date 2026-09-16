@@ -1,0 +1,12 @@
+// https://niri-wm.github.io/niri/Configuration:-Input
+
+input {
+    keyboard {
+        numlock
+    }
+
+    touchpad {
+        tap
+        natural-scroll
+    }
+}

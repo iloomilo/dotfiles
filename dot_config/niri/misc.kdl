@@ -1,0 +1,13 @@
+prefer-no-csd
+
+screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+
+hotkey-overlay {
+    // skip-at-startup
+}
+
+// https://niri-wm.github.io/niri/Configuration:-Animations
+animations {
+    // off
+    // slowdown 3.0
+}

@@ -1,0 +1,38 @@
+// https://niri-wm.github.io/niri/Configuration:-Layout
+// Colors are set in colors.kdl
+
+layout {
+    gaps 20
+    center-focused-column "never"
+
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+    }
+    default-column-width { proportion 0.5; }
+
+    focus-ring {
+        width 2
+    }
+
+    border {
+        off
+        width 4
+        urgent-color "#9b0000"
+    }
+
+    shadow {
+        on
+        softness 32
+        spread 2
+        offset x=0 y=6
+        color "#00000077"
+    }
+}
+
+overview {
+    workspace-shadow {
+        off
+    }
+}

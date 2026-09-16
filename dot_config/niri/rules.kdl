@@ -1,0 +1,47 @@
+// https://niri-wm.github.io/niri/Configuration:-Window-Rules
+// https://niri-wm.github.io/niri/Configuration:-Layer-Rules
+
+// ── All Windows ──────────────────────────────────────────
+
+// Rounded corners
+window-rule {
+    geometry-corner-radius 16
+    clip-to-geometry true
+}
+
+// Only the focused window gets a shadow
+window-rule {
+    match is-focused=false
+
+    shadow {
+        off
+    }
+}
+
+// ── Apps ─────────────────────────────────────────────────
+
+window-rule {
+    match app-id=r#"^kitty$"#
+
+    draw-border-with-background false
+
+    background-effect {
+        blur true
+    }
+}
+
+// Open Firefox picture-in-picture as floating
+window-rule {
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    open-floating true
+}
+
+// ── Layers ───────────────────────────────────────────────
+
+layer-rule {
+    match namespace="^(launcher|fuzzel)$"
+
+    background-effect {
+        blur true
+    }
+}
