@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+# Jump to a scratchpad app on the named "scratch" workspace, launching it if needed.
+# Pressing again while the app is focused returns to the previous workspace.
+# Usage: scratchpad <app-id> <command to launch if not running...>
+set -euo pipefail
+
+SCRATCH_WORKSPACE="scratch"
+
+app_id="$1"
+shift
+
+find_window() {
+    niri msg -j windows | jq -c --arg app "$app_id" \
+        '[.[] | select((.app_id // "") | ascii_downcase == ($app | ascii_downcase))] | sort_by(.id) | first // empty'
+}
+
+window=$(find_window)
+
+if [[ -z "$window" ]]; then
+    [[ $# -eq 0 ]] && exit 0
+    setsid -f "$@" >/dev/null 2>&1
+
+    for _ in $(seq 50); do
+        window=$(find_window)
+        [[ -n "$window" ]] && break
+        sleep 0.2
+    done
+    [[ -z "$window" ]] && exit 0
+
+    win_id=$(jq -r '.id' <<<"$window")
+
+    # Some apps (e.g. Spotify) set their app-id late, so the window rule may not apply
+    scratch_id=$(niri msg -j workspaces | jq --arg n "$SCRATCH_WORKSPACE" '.[] | select(.name == $n) | .id')
+    if [[ $(jq -r '.workspace_id' <<<"$window") != "$scratch_id" ]]; then
+        niri msg action move-window-to-workspace --window-id "$win_id" "$SCRATCH_WORKSPACE"
+        niri msg action focus-window --id "$win_id"
+        niri msg action maximize-column
+    fi
+
+    niri msg action focus-window --id "$win_id"
+    exit 0
+fi
+
+if [[ $(jq -r '.is_focused' <<<"$window") == "true" ]]; then
+    niri msg action focus-workspace-previous
+else
+    niri msg action focus-window --id "$(jq -r '.id' <<<"$window")"
+fi

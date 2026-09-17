@@ -30,6 +30,14 @@ window-rule {
     }
 }
 
+// Scratchpad apps live maximized on the scratch workspace, see scripts/scratchpad
+window-rule {
+    match app-id=r#"(?i)^spotify$"#
+    match app-id=r#"^(discord|vesktop|equibop|WebCord)$"#
+    open-on-workspace "scratch"
+    open-maximized true
+}
+
 // Open Firefox picture-in-picture as floating
 window-rule {
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
