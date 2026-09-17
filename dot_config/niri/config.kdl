@@ -4,7 +4,7 @@
 include "input.kdl"
 include "outputs.kdl"
 include "layout.kdl"
-include "workspaces.kdl"
+include "scratchpads.kdl"
 include "rules.kdl"
 include "binds.kdl"
 include "startup.kdl"

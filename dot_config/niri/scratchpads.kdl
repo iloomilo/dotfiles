@@ -1,0 +1,12 @@
+// Scratchpad apps live maximized on the scratch workspace.
+// Toggled with scripts/scratchpad, keybinds are in binds.kdl.
+// https://niri-wm.github.io/niri/Configuration:-Named-Workspaces
+
+workspace "scratch"
+
+window-rule {
+    match app-id=r#"(?i)^spotify$"#
+    match app-id=r#"^(discord|vesktop|equibop|WebCord)$"#
+    open-on-workspace "scratch"
+    open-maximized true
+}
