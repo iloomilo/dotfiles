@@ -21,6 +21,15 @@ input_path = '~/.config/matugen/templates/kitty-colors.conf'
 output_path = '~/.config/kitty/colors.conf'
 post_hook = 'kitty @ set-colors -a ~/.config/kitty/colors.conf 2>/dev/null || true'
 
+[templates.brave]
+input_path = '~/.config/matugen/templates/brave-colors.json'
+output_path = '~/.local/state/matugen/brave-colors.json'
+post_hook = '~/.local/bin/matugen-brave ~/.local/state/matugen/brave-colors.json 2>/dev/null || true'
+
+[templates.zellij]
+input_path = '~/.config/matugen/templates/zellij.kdl'
+output_path = '~/.config/zellij/themes/matugen.kdl'
+
 [templates.fuzzel]
 input_path = '~/.config/matugen/templates/fuzzel-colors.ini'
 output_path = '~/.config/fuzzel/colors.ini'
