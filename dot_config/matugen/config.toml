@@ -24,7 +24,7 @@ post_hook = 'kitty @ set-colors -a ~/.config/kitty/colors.conf 2>/dev/null || tr
 [templates.brave]
 input_path = '~/.config/matugen/templates/brave-colors.json'
 output_path = '~/.local/state/matugen/brave-colors.json'
-post_hook = '~/.local/bin/matugen-brave ~/.local/state/matugen/brave-colors.json 2>/dev/null || true'
+post_hook = '~/.config/matugen/scripts/matugen-brave ~/.local/state/matugen/brave-colors.json 2>/dev/null || true'
 
 [templates.zellij]
 input_path = '~/.config/matugen/templates/zellij.kdl'
