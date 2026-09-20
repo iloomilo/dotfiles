@@ -5,89 +5,39 @@ import json
 
 def hex_to_argb_int(hex_str):
     hex_str = hex_str.strip().lstrip("#")
-    r = int(hex_str[0:2], 16)
-    g = int(hex_str[2:4], 16)
-    b = int(hex_str[4:6], 16)
+    r, g, b = (int(hex_str[i:i+2], 16) for i in (0, 2, 4))
     val = (0xFF << 24) | (r << 16) | (g << 8) | b
-    if val > 0x7FFFFFFF:
-        val -= (1 << 32)
-    return val
+    return val - (1 << 32) if val > 0x7FFFFFFF else val
 
 def main():
-    seed_hex = None
+    colors_file = sys.argv[1] if len(sys.argv) > 1 else os.path.expanduser("~/.local/state/matugen/brave-colors.json")
+    if not os.path.exists(colors_file):
+        return
 
-    # 1. Direct argument passed (e.g. from matugen post_hook)
-    if len(sys.argv) > 1 and os.path.exists(sys.argv[1]):
-        try:
-            with open(sys.argv[1]) as f:
-                data = json.load(f)
-            seed_hex = data.get("primary")
-        except Exception:
-            pass
+    with open(colors_file) as f:
+        primary = json.load(f).get("primary")
+    if not primary:
+        return
 
-    # 2. Matugen dedicated brave-colors.json
-    brave_json = os.path.expanduser("~/.local/state/matugen/brave-colors.json")
-    if not seed_hex and os.path.exists(brave_json):
-        try:
-            with open(brave_json) as f:
-                data = json.load(f)
-            seed_hex = data.get("primary")
-        except Exception:
-            pass
+    argb_val = hex_to_argb_int(primary)
 
-    # 3. Quickshell colors
-    qs_path = os.path.expanduser("~/.local/state/quickshell/colors.json")
-    if not seed_hex and os.path.exists(qs_path):
-        try:
-            with open(qs_path) as f:
-                data = json.load(f)
-            seed_hex = data.get("primary")
-        except Exception:
-            pass
-
-    # 4. Kitty colors
-    kitty_path = os.path.expanduser("~/.config/kitty/colors.conf")
-    if not seed_hex and os.path.exists(kitty_path):
-        try:
-            with open(kitty_path) as f:
-                for line in f:
-                    parts = line.strip().split()
-                    if len(parts) >= 2 and parts[0] == "color4":
-                        seed_hex = parts[1]
-                        break
-        except Exception:
-            pass
-
-    if not seed_hex:
-        seed_hex = "#c7c5cc"
-
-    argb_val = hex_to_argb_int(seed_hex)
-
-    pref_paths = [
+    for p in [
         os.path.expanduser("~/.config/BraveSoftware/Brave-Origin/Default/Preferences"),
         os.path.expanduser("~/.config/BraveSoftware/Brave-Browser/Default/Preferences")
-    ]
-
-    for p in pref_paths:
+    ]:
         if not os.path.exists(p):
             continue
         try:
             with open(p, "r", encoding="utf-8") as f:
                 prefs = json.load(f)
 
-            if "browser" not in prefs:
-                prefs["browser"] = {}
-            if "theme" not in prefs["browser"]:
-                prefs["browser"]["theme"] = {}
-
-            prefs["browser"]["theme"]["user_color2"] = argb_val
-            prefs["browser"]["theme"]["color_scheme2"] = 2  # Dark mode
-            prefs["browser"]["theme"]["color_variant2"] = 1 # Tonal Spot
-
-            if "extensions" not in prefs:
-                prefs["extensions"] = {}
-            if "theme" not in prefs["extensions"]:
-                prefs["extensions"]["theme"] = {}
+            prefs.setdefault("browser", {}).setdefault("theme", {})
+            prefs["browser"]["theme"].update({
+                "user_color2": argb_val,
+                "color_scheme2": 2,
+                "color_variant2": 1
+            })
+            prefs.setdefault("extensions", {}).setdefault("theme", {})
             prefs["extensions"]["theme"]["id"] = "user_color_theme_id"
 
             with open(p, "w", encoding="utf-8") as f:
