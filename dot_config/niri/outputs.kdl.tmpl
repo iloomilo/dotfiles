@@ -1,0 +1,28 @@
+// https://niri-wm.github.io/niri/Configuration:-Outputs
+// List names and modes with: niri msg outputs
+
+{{ if eq .chezmoi.hostname "cachyos-pc" -}}
+// ── Desktop PC: Top & Bottom Setup ──────────────────────────
+// Top Monitor (1080p, Centered above 1440p)
+output "HDMI-A-2" {
+    mode "1920x1080@60.000"
+    scale 1.0
+    transform "normal"
+    position x=320 y=0
+}
+
+// Bottom Main Monitor (1440p @ 240Hz VRR)
+output "DP-1" {
+    mode "2560x1440@239.970"
+    scale 1.0
+    transform "normal"
+    position x=0 y=1080
+    variable-refresh-rate
+}
+{{ else -}}
+// ── Laptop: Single Internal Screen ──────────────────────────
+output "eDP-1" {
+    mode "1920x1080@120.030"
+    scale 1.0
+}
+{{ end -}}
