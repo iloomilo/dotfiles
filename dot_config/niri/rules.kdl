@@ -3,6 +3,14 @@
 
 // ── All Windows ──────────────────────────────────────────
 
+
+
+blur {
+    passes 4
+    offset 4
+    saturation 1
+}
+
 // Rounded corners
 window-rule {
     geometry-corner-radius 16
