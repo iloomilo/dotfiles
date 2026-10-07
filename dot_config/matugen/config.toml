@@ -13,8 +13,9 @@ output_path = '~/.config/niri/colors.kdl'
 
 
 [templates.neovim]
-input_path = '~/.config/matugen/templates/neovim-colors.lua'
-output_path = '~/.config/nvim/lua/config/colors.lua'
+input_path = '~/.config/matugen/templates/nvim-colors.json'
+output_path = '~/.cache/matugen/nvim-colors.json'
+post_hook = 'pkill -SIGUSR1 nvim'
 
 [templates.kitty]
 input_path = '~/.config/matugen/templates/kitty-colors.conf'
